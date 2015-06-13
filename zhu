@@ -1,0 +1,137 @@
+#include<iostream.h>
+#include<conio.h> 
+#include<stdio.h> 
+#include<process.h> 
+#include<fstream.h> 
+#include<string.h> 
+#include<dos.h>  
+void main() 
+{ system("cls"); 
+cout<<"\n\n\n\n\t\t********************************************\n" 
+<<"\t\t*                                          *\n" <<"\t\t*                                          *\n" 
+<<"\t\t*  欢迎使用小型超市商品销售管理系统(HYY)   *\n" 
+<<"\t\t*                                          *\n" 
+<<"\t\t*      Desined by 王曰芳 206050529         *\n" 
+<<"\t\t*                                          *\n" 
+<<"\t\t*          (按任意键进入)                  *\n" 
+<<"\t\t*                                          *\n" 
+<<"\t\t*                                          *\n" 
+<<"\t\t********************************************\n"<<endl;       
+  getch();    
+food f;   
+makeup m;   
+drink d;   
+live l;   
+while(1)   
+{A: 
+  system("cls");   
+int choice;   
+int x; 
+  cout<<"\n\n\t\t\t\t主菜单"<<"\n\n\t\t\t\t(1)添加商品品种\n" <<"\n\t\t\t\t(2)查询商品\n" 
+  <<"\n\t\t\t\t(3)删除商品"<<"\n\n\t\t\t\t(4)退出"<<"\n\n\n请选择：";   cin>>x;   
+switch(x)   
+{ case 1: 
+  {system("cls"); 
+ cout<<"\n\n\n\n\n\n\t\t请选择添加哪一类："<<"\n\n\t\t\t\t（1）食品类"<<"\n\t\t\t\t（2）化妆品类"<<"\n\t\t\t\t（3）饮料类"<<"\n\t\t\t\t（4）生活用品类"<<"\n\t\t\t\t（5）返回"<<endl;      
+        cin>>choice;      
+        switch(choice)      
+        {case 1:  
+                    system("cls");       
+             f.addf(); 
+                 
+                break;      
+         case 2: 
+                system("cls");       
+             m.addm(); 
+                 
+                 break;      
+          case 3: 
+                      system("cls");       
+               d.addd();
+               
+                 break;      
+          case 4: 
+                      system("cls");       l
+              .addl();     
+             
+                 break;         
+          case 5: 
+                       system("cls");               
+                break;      
+      }   
+        break;   
+} 
+case 2: 
+  {system("cls"); 
+ cout<<"\n\n\n\n\n\n\t\t请选择查询哪一类："<<"\n\n\t\t\t\t（1）食品类"<<"\n\t\t\t\t（2）化妆品类"<<"\n\t\t\t\t（3）饮料类"<<"\n\t\t\t\t（4）生活用品类"<<"\n\t\t\t\t（5）返回"<<endl;      
+        cin>>choice;      
+        switch(choice)      
+        {case 1:  
+                    system("cls");       
+             f.searchf(); 
+                 
+                break;      
+         case 2: 
+                system("cls");       
+              m.searchm() 
+                 
+                 break;      
+          case 3: 
+                      system("cls");       
+               d.searchd();
+               
+                 break;      
+          case 4: 
+                      system("cls");       l
+              l.searchl();              
+                 break;         
+          case 5: 
+                       system("cls");               
+                break;      
+      }   
+        break;   
+} 
+case 3: 
+  {system("cls"); 
+ cout<<"\n\n\n\n\n\n\t\t请选择删除哪一类："<<"\n\n\t\t\t\t（1）食品类"<<"\n\t\t\t\t（2）化妆品类"<<"\n\t\t\t\t（3）饮料类"<<"\n\t\t\t\t（4）生活用品类"<<"\n\t\t\t\t（5）返回"<<endl;      
+        cin>>choice;      
+        switch(choice)      
+        {case 1:  
+                    system("cls");       
+              f.removef(); 
+                 
+                break;      
+         case 2: 
+                system("cls");       
+             m.removem();
+                 
+                 break;      
+          case 3: 
+                      system("cls");       
+               d.removed();
+               
+                 break;      
+          case 4: 
+                      system("cls");       l
+              l.removel();     
+             
+                 break;         
+          case 5: 
+                       system("cls");               
+                break;      
+      }   
+        break;   
+} 
+       case 4: 
+             {system("cls"); 
+              cout<<"\n\n\n\n\n\n\t\t\t\t谢谢使用！"<<"\n\n\t\t\t\t再见！\n";    
+            exit(1);    
+            } 
+              break;         
+         default: 
+              {cout<<"输入有误，请重选！";              
+              goto A;    
+             }   
+ }   
+ }  
+} 
