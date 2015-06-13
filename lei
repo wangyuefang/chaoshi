@@ -1,0 +1,323 @@
+class spbase 
+{public: 
+         int t; 
+         float oprice;    
+float iprice;    
+float prof;    
+int quantity;
+char name[10];          
+void getdate();    
+void showdate();    
+void add();    
+void search();    
+void remove();    
+gett(){return t;}   
+}; 
+oid spbase::getdate()                 //输入函数的设计 
+{ cout<<"\n\t\t请输入商品名称:";   
+ cin>>name; 
+ cout<<"\n\t\t请输入商品售价:"; 
+ cin>>oprice; 
+  cout<<"\n\t\t请输入商品进价:";   
+ cin>>iprice; 
+  cout<<"\n\t\t请输入商品库存量:";   
+ cin>>quantity; 
+}  
+void spbase::showdate()                //输出函数的设计 
+{ cout<<"\n\n商品基本信息如下:";   
+ cout<<"\n\n\t\t商品名称:";   
+ cout<<name; 
+  cout<<"\n\n\t\t商品售价:";   
+ cout<<oprice; 
+  cout<<"\n\n\t\t商品进价:";   
+ cout<<iprice; 
+  cout<<"\n\n\t\t商品库存量:";   
+ cout<<quantity;
+ prof=(oprice-iprice)*quantity;   
+ cout<<"\n\n\t\t商品利润为 :";   
+ cout<<prof;  
+}  
+void spbase::add()                    //添加函数的设计 
+{   t=1; 
+   ofstream file("HYY.txt",ios::out|ios::ate);  
+ 
+  if(!file) 
+  {cout<<"文件打开失败！";    
+  getch();    
+  exit(1);
+  }  
+
+  spbase p1;   
+ p1.getdate(); 
+ file.write(reinterpret_cast<char*>(&p1),sizeof(spbase));        // 
+reinterpret_cast强制转换   
+ file.close(); 
+}    
+
+   
+void spbase::search()                     //查询函数的设计 
+{  
+  char name4[10]; 
+  cout<<"\n请输入生活用品名称:";
+  cin>>name4; 
+  fstream file("HYY.txt",ios::in);  
+  if (!file) 
+  {cout<<"文件打开失败！";    
+  getch();    
+  exit(1);   
+} 
+  char flag='a';                                         //设标志位   
+ spbase p1; 
+  file.read(reinterpret_cast<char*>(&p1),sizeof(spbase)); 
+  while(!file.eof())                                      //正确显示，指针还没到
+                                   末尾继续  
+  { if((strcmp(p1.name,name4)==0)&&gett())   
+ {p1.showdate();    
+  getch();    
+  flag='z';   
+  break;   
+} 
+ file.read(reinterpret_cast<char*>(&p1),sizeof(spbase));   
+}    
+  if(flag!='z') 
+  { cout<<("该商品已被删除！");     
+  getch();   
+} 
+   file.close(); 
+}
+ void spbase::remove()                   //删除函数的设计 
+{ t=0;search();}  
+
+
+
+3. 食品类设计(food) 
+class food:public spbase 
+{ private: 
+          char pfs[10];  
+  public:  
+       void getdatef() 
+    { spbase::getdate(); 
+      cout<<"\n\t\t请输入商品批发商:";    
+   cin>>pfs;     
+}
+
+void showdatef() 
+    { spbase::showdate(); 
+      cout<<"\n\n\t\t商品批发商:";    
+   cout<<pfs;     
+}  
+
+void addf()     
+{ t=1; 
+   ofstream file("HYY1.txt",ios::out|ios::ate); 
+ 
+   if(!file) 
+   {cout<<"文件打开失败！";              
+  getch();               
+  exit(1);    
+}
+
+food f; 
+f.getdatef(); 
+file.write(reinterpret_cast<char*>(&f),sizeof(food));             
+file.close();     
+}  
+            
+void searchf()     
+{ char name1[10]; 
+   cout<<"\n请输入食品名称:";             
+  cin>>name1;
+fstream file("HYY1.txt",ios::in);             
+if (!file) 
+   {cout<<"文件打开失败！";              
+  getch();              
+  exit(1);    
+} 
+char flag='a';             
+food f; 
+file.read(reinterpret_cast<char*>(&f),sizeof(food));             
+while(!file.eof()) 
+   { if((strcmp(f.name,name1)==0)&&gett())    
+  {f.showdatef();              
+   getch();              
+   flag='z';              
+   break;    
+} 
+      file.read(reinterpret_cast<char*>(&f),sizeof(food));    
+}
+    if(flag!='z') 
+{ cout<<("该商品已被删除！");               
+getch();    
+} 
+     file.close();     
+}  
+     void removef()     
+{ t=0;searchf();} 
+ }
+
+
+4. 化妆品类设计（makeup）
+ 
+class makeup:public spbase 
+{ private: 
+          char pp[10];   
+ public:  
+       void getdatem() 
+     { spbase::getdate(); 
+       cout<<"\n\t\t请输入商品品牌:";    
+cin>>pp;    
+ }
+void showdatem() 
+    { spbase::showdate(); 
+      cout<<"\n\n\t\t商品品牌:";    
+   cout<<pp;     
+}  
+void addm()     
+{ t=1; 
+   ofstream file("HYY2.txt",ios::out|ios::ate);  
+            if(!file) 
+   {cout<<"文件打开失败！";              
+  getch();               
+  exit(1);    
+}  
+     makeup m;             
+   m.getdatem(); 
+     file.write(reinterpret_cast<char*>(&m),sizeof(makeup));
+   file.close();     
+}
+
+ void searchm()      
+{ char name2[10]; 
+   cout<<"\n请输入化妆品名称:";             
+  cin>>name2; 
+   fstream file("HYY2.txt",ios::in);             
+  if (!file) 
+   {cout<<"文件打开失败！";              
+  getch();              
+  exit(1);   
+ } 
+    char flag='a';             
+  makeup m; 
+    file.read(reinterpret_cast<char*>(&m),sizeof(makeup));             
+  while(!file.eof()) 
+   { if((strcmp(m.name,name2)==0))    
+  {m.showdatem();              
+   getch();              
+   flag='z';              
+    break;
+}
+ file.read(reinterpret_cast<char*>(&m),sizeof(makeup));    
+}    
+ if(flag!='z') 
+{ cout<<("该商品已被删除！");               
+ getch();   
+ } 
+  file.close();     
+}  
+  void removem()     
+{ t=0;searchm();}  
+};
+
+
+5. 饮料类设计（drink）  
+class drink:public spbase 
+{ private: 
+      char factory[10];   
+ public:  
+      void getdated() 
+      { spbase::getdate(); 
+          cout<<"\n\t\t请输入商品生产厂家:";    
+       cin>>factory;   
+      }  
+        void showdated() 
+       { spbase::showdate(); 
+         cout<<"\n\n\t\t商品生产厂家:";    
+      cout<<factory;     }
+  
+           void addd()     
+      { t=1;
+ 20 
+            file.read(reinterpret_cast<char*>(&m),sizeof(makeup));    }    
+            if(flag!='z') 
+   { cout<<("该商品已被删除！");               getch();    } 
+            file.close();     }  
+          void removem()     { t=0;searchm();}  
+             }; 
+5. 饮料类设计（drink）  
+class drink:public spbase { private: 
+          char factory[10];   public:  
+       void getdated() 
+    { spbase::getdate(); 
+      cout<<"\n\t\t请输入商品生产厂家:";    cin>>factory;     }  
+    void showdated() 
+    { spbase::showdate(); 
+      cout<<"\n\n\t\t商品生产厂家:";    
+   cout<<factory;     }  
+     void addd()    
+   { t=1; 
+      ofstream file("HYY3.txt",ios::out|ios::ate);  
+         if(!file) 
+{cout<<"文件打开失败！";              
+ getch();               
+ exit(1);    
+}
+drink d; 
+d.getdated(); 
+file.write(reinterpret_cast<char*>(&d),sizeof(drink));             
+file.close();     
+}  
+             
+void searchd()     
+{ char name3[10]; 
+   cout<<"\n请输入饮料名称:";             
+  cin>>name3; 
+   fstream file("HYY3.txt",ios::in);             
+  if (!file) 
+   {cout<<"文件打开失败！";              
+   getch();              
+   exit(1);
+}
+ char flag='a';             
+ drink d; 
+  file.read(reinterpret_cast<char*>(&d),sizeof(drink));             
+ while(!file.eof()) 
+{ if((strcmp(d.name,name3)==0))    
+{d.showdated();              
+   getch();             
+   flag='z';             
+   break;    } 
+     file.read(reinterpret_cast<char*>(&d),sizeof(drink));   
+ }    
+     if(flag!='z') 
+ { cout<<("该商品已被删除！");               
+  getch();    
+} 
+    file.close();     
+} 
+  void removed()     
+{ t=0;searchd();
+}  
+};
+
+
+ 22 
+6. 生活用品类设计（live） 
+class live:public spbase 
+{  
+  public:  
+       void getdatel() 
+    { spbase::getdate();  
+    }  
+    void showdatel() 
+{ spbase::showdate();          
+ }  
+          void addl()     
+  { spbase::add();     
+  } 
+     void searchl()     
+  { spbase::search();
+  }  
+       void removel()     
+  {spbase::remove();
+  }       
+};
